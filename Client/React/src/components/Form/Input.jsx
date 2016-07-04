@@ -1,8 +1,17 @@
 import React from 'react';
 
 class Input extends React.Component {
+  constructor (props) {
+    super(props);
+  }
   render () {
-    // TODO: 自定义前面的图标 获取焦点内容不为空时 显示删除按钮
+    return (
+      <div>
+        <input {...this.props}/>
+        <span className="icon-clear"></span>
+        <span className="icon-eye"></span>
+      </div>
+    );
   }
 }
 
