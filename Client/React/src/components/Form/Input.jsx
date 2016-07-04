@@ -9,7 +9,7 @@ class Input extends React.Component {
       <div>
         <input {...this.props}/>
         <span className="icon-clear"></span>
-        <span className="icon-eye"></span>
+        { this.props.type === 'password' ? <span className="icon-eye"></span> : ''}
       </div>
     );
   }

@@ -1,21 +1,22 @@
 /* Base Application Styles */
 body {
-  color: #fff;
-  background: #222;
+  background-color: #fff;
 }
 
-.index img {
-  margin: 40px auto;
-  border-radius: 4px;
-  background: #fff;
-  display: block;
+@font-face {
+  font-family: 'commonfont';
+  src: url('//at.alicdn.com/t/font_1467629908_7175777.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1467629908_7175777.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1467629908_7175777.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1467629908_7175777.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1467629908_7175777.svg#commonfont') format('svg'); /* iOS 4.1- */
 }
 
-.index .notice {
-  margin: 20px auto;
-  padding: 15px 0;
-  text-align: center;
-  border: 1px solid #000;
-  border-width: 1px 0;
-  background: #666;
+.icon-eye,.icon-clear{
+  font-family: "commonfont" !important;
+  font-size: .666667rem;
+  font-style: normal;
 }
+
+.icon-eye:before{ content: "\e603";}
+.icon-clear:before{ content: "\e602"}
