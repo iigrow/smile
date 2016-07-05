@@ -7,6 +7,9 @@
  *          you edit them, they are not updated again.
  */
 import { combineReducers } from 'redux';
+import login from './login';
 /* Populated by react-webpack-redux:reducer */
-const reducers = {};
+const reducers = {
+  login
+};
 module.exports = combineReducers(reducers);
