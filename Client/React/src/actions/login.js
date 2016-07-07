@@ -8,3 +8,11 @@ export const setUserName = userName => {
     userName: userName
   };
 }
+
+export const login = (account, password) => {
+  return dispatch => {
+    return fetch(`/user/id`).then(response => {
+      dispatch(setUserName(response.username));
+    })
+  };
+}

@@ -1,18 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
 import configureStore from './stores';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+
 import App from './containers/App';
-import Login from './components/Authenticate/Login';
+import NavContainer from './containers/NavContainer';
+import SmileContainer from './containers/SmileContainer';
+import MineContainer from './containers/MineContainer';
+
 
 const store = configureStore();
 
 render(
   <Provider store={store}>
-    <Router>
-      <Route path="/" component={App} >
-        <Route path="login" component={Login} />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+
       </Route>
     </Router>
   </Provider>,
