@@ -1,24 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './stores';
-import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 
 import App from './containers/App';
-import NavContainer from './containers/NavContainer';
-import SmileContainer from './containers/SmileContainer';
-import MineContainer from './containers/MineContainer';
 
+let MOUNT_NODE = document.getElementById('app');
 
-const store = configureStore();
+let renderApp = () => {
+  render(<App/>, MOUNT_NODE);
+}
 
-render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
+let env = 'dev';
 
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('app')
-);
+if(env === 'dev'){
+  try{
+    renderApp();
+  } catch(err) {
+    const RedBox = require('redbox-react');
+    render(<RedBox error={err} />, MOUNT_NODE);
+  }
+} else {
+  renderApp();
+}

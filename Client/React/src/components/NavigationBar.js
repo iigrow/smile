@@ -1,17 +1,15 @@
 require('../styles/components/navigation-bar.scss');
 
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 class NavigationBar extends Component{
   render () {
     return (
-      <div className="navigation-bar">
-        <div></div>
-        <div></div>
-        <div></div>
+      <div>
+        back
       </div>
     );
   }
 }
 
-export default Navigater;
+export default NavigationBar;

@@ -1,16 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import NavigationBar from '../components/NavigationBar';
 
 const propTypes = {};
 
 class NavContainer extends Component{
   render () {
-    return (
-      <div>
-        <div>smile</div>
-        <div>mine</div>
-        <div>user</div>
-      </div>
-    );
+    return <NavigationBar />;
   }
 }
 

@@ -1,9 +1,10 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 class SmileContainer extends Component{
   render () {
     return (
-      <div>smile</div>
+      <div>smile
+      </div>
     );
   }
 }
