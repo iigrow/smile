@@ -2,17 +2,19 @@ require('../styles/components/prologue.scss');
 
 import React from 'react';
 import Button from './Form/Button';
+import Slider from './Slider';
 
 class Prologue extends React.Component{
+  constructor(props){
+    super(props);
+  }
   render () {
     return (
-      <div class="prologue">
+      <div className="prologue">
         { this.props.sences.map(value => {
-          return <div class="sence" key={value.id}><img src={value.img} /></div>;
+          return <div className="sence" key={value.id}><img src={value.img} /></div>;
         })}
-        <div>sdfsdfsdfsdf</div>
-        <div>
-        </div>
+        <Slider />
       </div>
     );
   }
