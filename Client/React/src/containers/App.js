@@ -4,6 +4,7 @@ import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 
 import configureStore from '../stores';
 
+import PrologueContainer from './PrologueContainer';
 import LoginContainer from './LoginContainer';
 import GuideContainer from './GuideContainer';
 import MainContainer from './MainContainer';
@@ -15,12 +16,11 @@ const store = configureStore();
 
 class App extends Component {
   render() {
-    // const {actions} = this.props;
     return (
       <Provider store={store}>
         <Router history={browserHistory}>
           <Route path="/" >
-            <IndexRoute component={GuideContainer} />
+            <IndexRoute component={PrologueContainer} />
             <Route path="login" component={LoginContainer} />
             <Route path="main" component={MainContainer} >
               <IndexRoute component={SmileContainer} />

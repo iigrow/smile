@@ -8,8 +8,10 @@
  */
 import { combineReducers } from 'redux';
 import login from './login';
+import prologue from './prologue';
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
-  login
+  login,
+  prologue
 };
 module.exports = combineReducers(reducers);
