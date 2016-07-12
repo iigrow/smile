@@ -11,7 +11,10 @@ class Slider extends React.Component{
       furthestPoint: {
         x: 0,
         y: 0
-      }
+      },
+      count: 0,
+      weight: 3,
+      range: 10
     };
   }
   onTouchStart(event){
@@ -27,26 +30,41 @@ class Slider extends React.Component{
     });
   }
   onTouchMove(event){
-    // 处理先左滑动一段距离后右滑动的情况
-    // 趋远  趋近
-    let displacement = {
-      dsx: this.state.startPoint.x - event.touches[0].clientX,
-      dsy: this.state.startPoint.y - event.touches[0].clientY
-    };
-    // if ( event.touches[0].clientX < this.state.furthestPoint.x)
-    // 最终目的是拿到准确的方向
+    console.log(event)
+    let _x = event.touches[0].clientX;
+    let _y = event.touches[0].clientY;
+    if (this.state.count > weight) {
+      dsx = this.state.furthestPoint.x - _x;
+      dsy = this.state.furthestPoint.y - _y;
+      // 滑动的方向角度
+      let angle = 2 + Math.atan(dsy/dsx) % 2;
+      this.setState({
+        furthestPoint: {
+          x: _x,
+          y: _y
+        },
+        count: 0
+      });
+    } else {
+      this.setState({
+        count: this.state.count + 1
+      })
+    }
   }
   onTouchEnd(event){
-    // 不用纪录endPoint
-    let displacement = {
-      dsx: this.state.startPoint.x - event.touches[0].clientX,
-      dsy: this.state.startPoint.y - event.touches[0].clientY
-    };
-    // 判断在合适的距离范围内 认为已经移动了 就执行对应的操作
+    console.log(event)
+    let dsx = this.state.furthestPoint.x - event.touches[0].clientX;
+    let dsy = this.state.furthestPoint.y - event.touches[0].clientY;
+    // 滑动的方向角度
+    let angle = 2 + Math.atan(dsy/dsx) % 2;
+    // 滑动距离🈶️效
+    if (dsx > this.state.rang || dsy > this.state.rang) {
+      // TODO: to do something
+    }
   }
   render () {
     return (
-      <div className="slider" onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} onTouchEnd={this.onTouchEnd}>
+      <div className="slider" onTouchStart={this.onTouchStart.bind(this)} onTouchMove={this.onTouchMove.bind(this)} onTouchEnd={this.onTouchEnd.bind(this)}>
         {this.props.children}
       </div>
     );
