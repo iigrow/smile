@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-class Slider extends React.Component{
-  constructor(props){
+const propTypes = {
+  start: PropTypes.func,
+  moving: PropTypes.func,
+  stop: PropTypes.func,
+};
+
+class Slider extends React.Component {
+  constructor(props) {
     super(props)
-    this.state={
+    this.state = {
       startPoint: {
         x: 0,
         y: 0
@@ -12,63 +18,58 @@ class Slider extends React.Component{
         x: 0,
         y: 0
       },
-      count: 0,
-      weight: 3,
-      range: 10
+      count: 0
     };
   }
-  onTouchStart(event){
+  onTouchStart(event) {
+    let {clientX, clientY} = event.changedTouches[0];
+    console.log(clientX);
+    console.log(clientY);
     this.setState({
       startPoint: {
-        x: event.touches[0].clientX,
-        y: event.touches[0].clientY
+        x: clientX,
+        y: clientY
       },
       furthestPoint: {
-        x: event.touches[0].clientX,
-        y: event.touches[0].clientY
+        x: clientX,
+        y: clientY
       }
     });
+    this.props.start && this.props.start();
   }
-  onTouchMove(event){
-    console.log(event)
-    let _x = event.touches[0].clientX;
-    let _y = event.touches[0].clientY;
-    if (this.state.count > weight) {
-      dsx = this.state.furthestPoint.x - _x;
-      dsy = this.state.furthestPoint.y - _y;
-      // 滑动的方向角度
-      let angle = 2 + Math.atan(dsy/dsx) % 2;
+  onTouchMove(event) {
+    let {clientX, clientY} = event.changedTouches[0];
+    // 每隔3个点 记录一次位置
+    if (this.state.count > 3) {
       this.setState({
         furthestPoint: {
-          x: _x,
-          y: _y
+          x: clientX,
+          y: clientY
         },
         count: 0
       });
+      this.props.moving && this.props.moving({ x: this.state.furthestPoint.x - clientX, y: this.state.furthestPoint.y - clientY });
     } else {
       this.setState({
         count: this.state.count + 1
       })
     }
   }
-  onTouchEnd(event){
-    console.log(event)
-    let dsx = this.state.furthestPoint.x - event.touches[0].clientX;
-    let dsy = this.state.furthestPoint.y - event.touches[0].clientY;
-    // 滑动的方向角度
-    let angle = 2 + Math.atan(dsy/dsx) % 2;
-    // 滑动距离🈶️效
-    if (dsx > this.state.rang || dsy > this.state.rang) {
-      // TODO: to do something
-    }
+  onTouchEnd(event) {
+    let {clientX, clientY} = event.changedTouches[0];
+    this.props.stop && this.props.stop(
+      { x: this.state.startPoint.x - clientX, y: this.state.startPoint.y - clientY },
+      { x: this.state.furthestPoint.x - clientX, y: this.state.furthestPoint.y - clientY });
   }
-  render () {
+  render() {
     return (
-      <div className="slider" onTouchStart={this.onTouchStart.bind(this)} onTouchMove={this.onTouchMove.bind(this)} onTouchEnd={this.onTouchEnd.bind(this)}>
+      <div className="slider" onTouchStart={this.onTouchStart.bind(this) } onTouchMove={this.onTouchMove.bind(this) } onTouchEnd={this.onTouchEnd.bind(this) }>
         {this.props.children}
       </div>
     );
   }
 }
+
+Slider.propTypes = propTypes;
 
 export default Slider;

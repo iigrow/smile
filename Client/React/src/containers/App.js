@@ -1,3 +1,4 @@
+require('../styles/App.css')
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
