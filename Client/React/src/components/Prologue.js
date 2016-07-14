@@ -9,16 +9,41 @@ class Prologue extends React.Component{
     super(props);
     this.state = {
       selectedId: 0,
-      count: this.props.sences.length
+      count: this.props.sences.length,
+      transform: 'translateX(0)'
     };
+  }
+  getAngle(vector) {
+    // 可优化
+    if (vector.x === 0) {
+      return vector.y > 0 ? 0.5 : 1.5;
+    }
+    if (vector.y === 0) {
+      return vector.x > 0 ? 0 : 1;
+    }
+    if (vector.x > 0) {
+      return (2 + Math.atan(vector.y/vector.x)) % 2
+    } else {
+      return 1 + Math.atan(vector.y/vector.x);
+    }
   }
   touchStart(){
     // TODO: 缩小选中的图片
   }
-  touchMoving(vector){
-    // let angle = 2 + Math.atan(dsy/dsx) % 2;
+  touchMoving(vector, totalVector){
     // 移动
-    console.log(vector);
+    let angle = this.getAngle(vector);
+    if ( angle > Math.PI/2 && angle < 1.5*Math.PI) {
+      // 左滑
+      this.setState({
+        transform: `translateX(${totalVector.x * (-1)}px)`
+      });
+    } else {
+      // 右滑
+      this.setState({
+        transform: `translateX(${totalVector.x}px)`
+      });
+    }
   }
   touchStop(vector, totalVector){
     // 运动半径大于10则判断为移动
@@ -51,13 +76,12 @@ class Prologue extends React.Component{
     }
   }
   render () {
-    let senceStyle = { width: 0 };
     return (
       <div className="prologue">
-        <Slider start={this.touchStart} moving={this.touchMoving} stop={this.touchStop}>
+        <Slider start={this.touchStart.bind(this)} moving={this.touchMoving.bind(this)} stop={this.touchStop.bind(this)}>
           <div className="sences">
           { this.props.sences.map(value => {
-            return <div className="sence" style={senceStyle} key={value.id}><img src={value.img}/></div>;
+            return <div className="sence" style={ {transform: this.state.transform }} key={value.id}><img src={value.img}/></div>;
           })}
           </div>
         </Slider>

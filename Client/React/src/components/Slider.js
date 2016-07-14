@@ -23,8 +23,6 @@ class Slider extends React.Component {
   }
   onTouchStart(event) {
     let {clientX, clientY} = event.changedTouches[0];
-    console.log(clientX);
-    console.log(clientY);
     this.setState({
       startPoint: {
         x: clientX,
@@ -48,7 +46,9 @@ class Slider extends React.Component {
         },
         count: 0
       });
-      this.props.moving && this.props.moving({ x: this.state.furthestPoint.x - clientX, y: this.state.furthestPoint.y - clientY });
+      this.props.moving && this.props.moving(
+        { x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y },
+        { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y });
     } else {
       this.setState({
         count: this.state.count + 1
@@ -58,8 +58,8 @@ class Slider extends React.Component {
   onTouchEnd(event) {
     let {clientX, clientY} = event.changedTouches[0];
     this.props.stop && this.props.stop(
-      { x: this.state.startPoint.x - clientX, y: this.state.startPoint.y - clientY },
-      { x: this.state.furthestPoint.x - clientX, y: this.state.furthestPoint.y - clientY });
+      { x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y },
+      { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y });
   }
   render() {
     return (
