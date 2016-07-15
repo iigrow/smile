@@ -21,6 +21,20 @@ class Slider extends React.Component {
       count: 0
     };
   }
+  getAngle(vector) {
+    // 可优化
+    if (vector.x === 0) {
+      return vector.y > 0 ? 0.5 : 1.5;
+    }
+    if (vector.y === 0) {
+      return vector.x > 0 ? 0 : 1;
+    }
+    if (vector.x > 0) {
+      return (2 + Math.atan(vector.y/vector.x)) % 2
+    } else {
+      return 1 + Math.atan(vector.y/vector.x);
+    }
+  }
   onTouchStart(event) {
     let {clientX, clientY} = event.changedTouches[0];
     this.setState({
@@ -37,6 +51,7 @@ class Slider extends React.Component {
   }
   onTouchMove(event) {
     let {clientX, clientY} = event.changedTouches[0];
+    let totalVector = { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y };
     // 每隔3个点 记录一次位置
     if (this.state.count > 3) {
       this.setState({
@@ -47,8 +62,8 @@ class Slider extends React.Component {
         count: 0
       });
       this.props.moving && this.props.moving(
-        { x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y },
-        { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y });
+        this.getAngle({ x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y }),
+        totalVector);
     } else {
       this.setState({
         count: this.state.count + 1
@@ -57,9 +72,11 @@ class Slider extends React.Component {
   }
   onTouchEnd(event) {
     let {clientX, clientY} = event.changedTouches[0];
+    let totalVector = { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y };
     this.props.stop && this.props.stop(
-      { x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y },
-      { x: clientX - this.state.startPoint.x, y: clientY - this.state.startPoint.y });
+      this.getAngle({ x: clientX - this.state.furthestPoint.x, y: clientY - this.state.furthestPoint.y }),
+      this.getAngle(totalVector),
+      totalVector);
   }
   render() {
     return (

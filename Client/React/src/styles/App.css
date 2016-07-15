@@ -1,6 +1,7 @@
 /* Base Application Styles */
 body {
   background-color: #fff;
+  margin: 0;
 }
 
 @font-face {
