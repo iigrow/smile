@@ -6,9 +6,18 @@ class MenuBar extends React.Component{
   render () {
     return (
       <div className="menu-bar">
-        <div>smile</div>
-        <div>mine</div>
-        <div>user</div>
+        <div>
+          <i className="ion-planet"></i>
+          <span>smile</span>
+        </div>
+        <div>
+          <i className="ion-social-instagram"></i>
+          <span>mine</span>
+        </div>
+        <div>
+          <i className="ion-person"></i>
+          <span>user</span>
+        </div>
       </div>
     );
   }

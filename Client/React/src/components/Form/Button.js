@@ -1,20 +1,30 @@
-import { Component } from 'react';
+require('../../styles/components/form/button.scss');
 
-const propTypes = {
-  type:'a'
-};
+import React, { Component, PropTypes } from 'react';
+import {Link} from 'react-router';
 
 class Button extends Component{
+  static propTypes = {
+    type: PropTypes.string,
+    text: PropTypes.string,
+    onClick: PropTypes.func,
+    linkPath: PropTypes.string
+  }
+  static defaultProps = {
+    type: 'a',
+    text: 'button',
+    onClick: null,
+    linkPath: '/'
+  }
   render () {
     switch(this.props.type){
-      case 'button': return <button type="button" value=""/>;
-      case 'input': return <input type="button" value="" />;
-      case 'div': return <div>button</div>
-      default : return <a href="javascript:void(0)"></a>;
+      case 'button': return <button className="button button-button" type="button" value={this.props.text} />;
+      case 'input': return <input className="button button-input" type="button" value={this.props.text} />;
+      case 'div': return <div className="button button-div" >{this.props.text}</div>
+      case 'link': return <Link className="button button-a" to={this.props.linkPath}>{this.props.text}</Link>;
+      default : return <a className="button button-a" href="javascript:void(0)">{this.props.text}</a>;
     }
   }
 }
-
-Button.propTypes = propTypes;
 
 export default Button;

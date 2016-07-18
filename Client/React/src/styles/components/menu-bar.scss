@@ -1,4 +1,21 @@
+@import '../color.scss';
+
 .menu-bar{
+  padding: .1rem 0;
   display: flex;
   justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $color-base;
+  text-align: center;
+  i {
+    font-size: 1rem;
+    line-height: 0;
+  }
+  span {
+    display: block;
+    line-height: .5rem;
+    font-size: (48rem/75);
+  }
 }

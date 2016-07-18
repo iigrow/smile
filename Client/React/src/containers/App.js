@@ -1,4 +1,5 @@
-require('../styles/App.css')
+require('../styles/App.css');
+
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
@@ -23,6 +24,7 @@ class App extends Component {
           <Route path="/" >
             <IndexRoute component={PrologueContainer} />
             <Route path="login" component={LoginContainer} />
+            <Route path="register" component={LoginContainer} />
             <Route path="main" component={MainContainer} >
               <IndexRoute component={SmileContainer} />
               <Route path="mine" component={MineContainer} />

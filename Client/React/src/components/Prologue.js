@@ -15,6 +15,7 @@ class Prologue extends React.Component {
     })
     let defaultSence = sences.get(selectedId);
     defaultSence.style = {transform: 'translateX(0)'};
+    defaultSence.style = {left: 0};
     sences.set(selectedId, defaultSence);
     this.state = {
       selectedId: selectedId,
@@ -36,7 +37,6 @@ class Prologue extends React.Component {
     this.setState({
       sences: sences
     });
-    console.log('------')
   }
   touchStop(angle, totalAngle, totalVector) {
     // 运动半径大于10则判断为移动 夹角大于90deg即判定为 方向冲突
@@ -72,6 +72,16 @@ class Prologue extends React.Component {
     });
   }
   render() {
+    let btnLogin = {
+      type: 'link',
+      text: '登录',
+      linkPath: 'login'
+    };
+    let btnRegister = {
+      type: 'link',
+      text: '注册',
+      linkPath: '/register'
+    };
     return (
       <div className="prologue">
         <Slider start={this.touchStart.bind(this) } moving={this.touchMoving.bind(this) } stop={this.touchStop.bind(this) }>
@@ -81,6 +91,10 @@ class Prologue extends React.Component {
             }) }
           </div>
         </Slider>
+        <div className="btn-bottom">
+          <Button {...btnLogin}/>
+          <Button {...btnRegister}/>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from '../Form/Input';
+import Button from '../Form/Button';
 
 class Login extends React.Component{
   render () {
@@ -15,6 +16,7 @@ class Login extends React.Component{
       <div>
         <Input {...accountInfo} />
         <Input {...passwordInfo} />
+        <Button />
       </div>
     );
   }
