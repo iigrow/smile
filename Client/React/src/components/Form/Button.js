@@ -17,12 +17,13 @@ class Button extends Component{
     linkPath: '/'
   }
   render () {
+    let content = this.props.children ? this.props.children : this.props.text;
     switch(this.props.type){
       case 'button': return <button className="button button-button" type="button" value={this.props.text} />;
       case 'input': return <input className="button button-input" type="button" value={this.props.text} />;
-      case 'div': return <div className="button button-div" >{this.props.text}</div>
-      case 'link': return <Link className="button button-a" to={this.props.linkPath}>{this.props.text}</Link>;
-      default : return <a className="button button-a" href="javascript:void(0)">{this.props.text}</a>;
+      case 'div': return <div className="button button-div" >{ content }</div>
+      case 'link': return <Link className="button button-a" to={this.props.linkPath}>{ content }</Link>;
+      default : return <a className="button button-a" href="javascript:void(0)">{ content }</a>;
     }
   }
 }
