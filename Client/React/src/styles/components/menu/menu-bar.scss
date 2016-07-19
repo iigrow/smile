@@ -1,4 +1,4 @@
-@import '../color.scss';
+@import '../../color.scss';
 
 .menu-bar{
   padding: .1rem 0;
@@ -17,5 +17,9 @@
     display: block;
     line-height: .5rem;
     font-size: (48rem/75);
+  }
+  a{
+    width: 33%;
+    height: 100%;
   }
 }

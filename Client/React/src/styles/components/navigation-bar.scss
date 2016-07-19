@@ -1,4 +1,18 @@
+@import '../color.scss';
+
 .navigation-bar{
-  display: flex;
-  justify-content: space-around;
-}
+  height: .9rem;
+  font-size: .8rem;
+  text-align: center;
+  background-color: $color-base;
+  i {
+    width: .9rem;
+    height: .8rem;
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+} 

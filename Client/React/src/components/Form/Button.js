@@ -17,6 +17,7 @@ class Button extends Component{
     linkPath: '/'
   }
   render () {
+    console.log(this.props.linkPath)
     let content = this.props.children ? this.props.children : this.props.text;
     switch(this.props.type){
       case 'button': return <button className="button button-button" type="button" value={this.props.text} />;

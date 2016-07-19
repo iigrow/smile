@@ -3,6 +3,7 @@ require('../styles/App.css');
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import configureStore from '../stores';
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="register" component={LoginContainer} />
             <Route path="main" component={MainContainer} >
               <IndexRoute component={SmileContainer} />
+              <Route path="smile" component={SmileContainer} />
               <Route path="mine" component={MineContainer} />
               <Route path="user" component={UserContainer} />
             </Route>
