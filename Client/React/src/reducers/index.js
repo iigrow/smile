@@ -7,11 +7,13 @@
  *          you edit them, they are not updated again.
  */
 import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import login from './login';
 import prologue from './prologue';
 /* Populated by react-webpack-redux:reducer */
 const reducers = {
   login,
-  prologue
+  prologue,
+  routing: routerReducer
 };
 module.exports = combineReducers(reducers);

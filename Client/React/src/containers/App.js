@@ -3,7 +3,7 @@ require('../styles/App.css');
 import React, { Component, PropTypes } from 'react';
 import { Provider, connect } from 'react-redux';
 import { browserHistory, Router, Route, IndexRoute } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureStore from '../stores';
 
@@ -16,12 +16,13 @@ import MineContainer from './MineContainer';
 import UserContainer from './UserContainer';
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store)
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={history}>
           <Route path="/" >
             <IndexRoute component={PrologueContainer} />
             <Route path="login" component={LoginContainer} />
