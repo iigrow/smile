@@ -1,4 +1,4 @@
-require('../../styles/components/form/button.scss');
+require('../../styles/components/tag/button.scss');
 
 import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router';

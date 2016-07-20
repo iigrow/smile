@@ -2,7 +2,7 @@ require('../../styles/components/menu/menu-bar.scss');
 
 import React from 'react';
 import { push } from 'react-router-redux';
-import Button from '../Form/Button';
+import Button from '../Tag/Button';
 
 class MenuBar extends React.Component{
   render () {

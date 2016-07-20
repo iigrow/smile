@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import Button from '../Form/Button';
-import Input from '../Form/Input';
+import Button from '../Tag/Button';
+import Input from '../Tag/Input';
 
 const propTypes = {
 

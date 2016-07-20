@@ -1,7 +1,7 @@
 require('../styles/components/prologue.scss');
 
 import React from 'react';
-import Button from './Form/Button';
+import Button from './Tag/Button';
 import Slider from './Slider';
 
 class Prologue extends React.Component {

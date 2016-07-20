@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from '../Form/Input';
-import Button from '../Form/Button';
+import Input from '../Tag/Input';
+import Button from '../Tag/Button';
 
 class Login extends React.Component{
   render () {
