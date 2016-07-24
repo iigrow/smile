@@ -1,3 +1,5 @@
+require('../../styles/components/layer/dialog.scss');
+
 import React, {PropTypes} from 'react';
 import Screen from './Screen';
 import Button from '../Tag/Button';

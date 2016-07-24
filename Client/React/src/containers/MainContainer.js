@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationBar from '../components/NavigationBar';
 import MenuBar from '../components/Menu/MenuBar';
 import Drawer from '../components/Menu/Drawer';
+import LayerImage from '../components/Layer/LayerImage';
 
 class MainContainer extends React.Component{
   state = {
@@ -9,8 +10,6 @@ class MainContainer extends React.Component{
     showMenu: true
   }
   onScroll (event) {
-    console.log(this.context);
-    // this.setState({showMenu: });
   }
   redirect () {
     const { history } = this.props;

@@ -2,15 +2,21 @@ require('../../styles/components/layer/screen.scss');
 
 import React, {PropTypes} from 'react';
 
-class Screen extends React.Component{
+class Screen extends React.Component {
   static propTypes = {
-    bgColor: PropTypes.string
+    bgColor: PropTypes.string,
+    visible: PropTypes.boolean
   }
   static defaultProps = {
-    bgColor: 'rgba(0, 0, 0, 1)'
+    bgColor: 'rgba(0, 0, 0, 1)',
+    visible: false
   }
-  render () {
-    return <div className="screen" style={{backgroundColor: this.props.bgColor}}>{this.props.children}</div>;
+  render() {
+    let divStyle = {
+      backgroundColor: this.props.bgColor,
+      display: this.props.visible ? 'block' : 'none'
+    }
+    return <div className="screen" style={divStyle} >{this.props.children}</div>;
   }
 }
 

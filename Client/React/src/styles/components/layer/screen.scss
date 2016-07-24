@@ -7,4 +7,10 @@
   text-align: center;
   background: none repeat scroll 0 0;
   z-index: 300;
+  :first-child{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
 }
