@@ -26,9 +26,9 @@ module.exports = {
     port: defaultSettings.port,
     publicPath: defaultSettings.publicPath,
     noInfo: false,
-    proxy: {
-      '/acjson': {
-        target: 'http://image.baidu.com/search/',
+    proxy: {  
+      '/api/*': {
+        target: 'http://localhost:3000/',
         secure: false
       }
     }
