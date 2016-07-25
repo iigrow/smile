@@ -1,15 +1,20 @@
 {
   "name": "smile",
   "version": "0.0.1",
-  "description": "smile",
+  "description": "smile server",
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "koa",
+    "smile"
+  ],
+  "author": "xjp.star@gmail.com",
+  "license": "Apache-2.0",
   "dependencies": {
     "http": "0.0.0",
-    "koa-router": "^5.4.0"
+    "koa-router": "^5.4.0",
+    "koa": "^1.2.1"
   }
 }
