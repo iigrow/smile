@@ -1,15 +1,15 @@
-export const get = (id) => {
+module.exports.get = (id) => {
 
 }
 
-export const put = () => {
+module.exports.put = () => {
 
 }
 
-export const post = () => {
+module.exports.post = () => {
 
 }
 
-export const del = () => {
+module.exports.del = () => {
 
 }
