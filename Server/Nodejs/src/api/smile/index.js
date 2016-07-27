@@ -1,3 +1,4 @@
-module.exports = get = () => {
-  console.log('smile index');
+module.exports.get = function() {
+  console.log('execute')
+  return 'Hello world';
 }
