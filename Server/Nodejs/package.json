@@ -4,7 +4,9 @@
   "description": "smile server",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha test/",
+    "startproxy": "sudo node proxy.js",
+    "start": "cd src/ && node index.js"
   },
   "keywords": [
     "koa",
@@ -15,6 +17,11 @@
   "dependencies": {
     "http": "0.0.0",
     "koa": "^1.2.1",
-    "koa-static": "^2.0.0"
+    "koa-send": "^3.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "http-proxy": "^1.14.0",
+    "mocha": "^2.5.3"
   }
 }

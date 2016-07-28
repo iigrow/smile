@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const debug = require('debug')('koa-router');
+// const debug = require('debug')('koa-router');
 const HttpError = require('http-errors');
 const send = require('koa-send');
 
