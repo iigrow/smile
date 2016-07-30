@@ -7,10 +7,10 @@ import LayerImage from './Layer/LayerImage';
 export default class Smile extends React.Component {
   constructor(props) {
     super(props);
-    const { fetchSmileImages, fetchMemoriesImages, fetchMostBeautifulImage } = props.actions;
+    const { fetchSmileImages, fetchMemoriesImages, fetchPrettyImage } = props.actions;
     fetchSmileImages();
     fetchMemoriesImages();
-    fetchMostBeautifulImage();
+    fetchPrettyImage();
     // // 光感
     // window.addEventListener('devicelight', event=>{
     //   this.setState({devicelight: event.value});
@@ -34,9 +34,10 @@ export default class Smile extends React.Component {
     // // navigator.geolocation.clearWatch(watchID);
   }
   static propTypes = {
-    mostBeautiful: PropTypes.object,
+    prettyImage: PropTypes.object,
     memoirsImages: PropTypes.array,
-    smileImages: PropTypes.array
+    smileImages: PropTypes.array,
+    layerImage: PropTypes.object
   }
   minIndex(arrData) {
     let index = 0;
@@ -67,45 +68,53 @@ export default class Smile extends React.Component {
       return value.imgs;
     })
   }
-  showLayerImag(){
-
-  }
   render() {
+    const {showLayerImage, hideLayerImage} = this.props.actions;
     let imgColCount = 3;
     let smileImgProp = {
-      referrerpolicy: 'no-referrer'
+      clickCallback: showLayerImage
     };
     // 高度固定
     let memoryImgProp = {
-      height: '100%'
+      height: '100%',
+      clickCallback: showLayerImage
     };
     let memorisWrapWidth = 0;
-    this.props.memoirsImages.forEach(value=>{
-      memorisWrapWidth += value.width/value.height;
+    this.props.memoirsImages.forEach(value => {
+      memorisWrapWidth += value.width / value.height;
     })
     memorisWrapWidth *= 3;
+    // console.log(this.props.smileImages)
     // TODO: 滚动图片按需加载
     let smileImages = this.calLayer(this.props.smileImages, imgColCount);
-    let layerImage = {
-      src: 'http://f.hiphotos.baidu.com/image/h%3D200/sign=0d1935de229759ee555067cb82f9434e/902397dda144ad345c61d654d4a20cf430ad8502.jpg',
-      width: 610,
-      height: 909
+    let prettyImgProps = {
+      src: '', // TODO: 默认的一个空白图片logo
+      style: {}
     };
+    if (this.props.prettyImage) {
+      prettyImgProps.src = this.props.prettyImage.src;
+      if (this.props.prettyImage.width > this.props.prettyImage.height) {
+        prettyImgProps.style.height = '100%';
+      } else {
+        prettyImgProps.style.width = '100%';
+      }
+    }
     return (
       <div className="smile">
-      <div></div>
-
-        <div className="mostbeautiful">
+        <div></div>
+        <div className="pretty">
           <div>左侧占据2rem</div>
-          <div className="beautiful-img"><Image src={this.props.mostBeautiful ? this.props.mostBeautiful.src : ''}/></div>
+          <div className="pretty-img">
+            <Image {...prettyImgProps}/>
+          </div>
           <div>右侧占据2rem</div>
         </div>
         <div>往日最美</div>
         <div className="memoris">
-          <div style={{width: memorisWrapWidth + 'rem'}}>
-          {this.props.memoirsImages.map((value, index) => {
-            return <Image src={value.src} key={index} {...memoryImgProp} />
-          }) }
+          <div style={{ width: memorisWrapWidth + 'rem' }}>
+            {this.props.memoirsImages.map((value, index) => {
+              return <Image key={index} {...memoryImgProp} {...value}/>
+            }) }
           </div>
         </div>
         <div>笑一下</div>
@@ -113,12 +122,12 @@ export default class Smile extends React.Component {
           {smileImages.map((value, index) => {
             return <div key={`col_${index}`} style={{ width: (100 / imgColCount) + '%' }} >
               {value.map((subValue, subIndex) => {
-                return <Image src={subValue.src} key={subIndex} {...smileImgProp} />
+                return <Image key={subIndex} {...smileImgProp}  {...subValue}/>
               }) }
             </div>;
           }) }
         </div>
-        <LayerImage {...layerImage}/>
+        { this.props.layerImage ? <LayerImage {...this.props.layerImage} clickCallback={hideLayerImage}/> : null}
       </div>
     );
   }

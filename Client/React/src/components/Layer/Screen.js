@@ -2,22 +2,18 @@ require('../../styles/components/layer/screen.scss');
 
 import React, {PropTypes} from 'react';
 
-class Screen extends React.Component {
+export default class Screen extends React.Component {
   static propTypes = {
     bgColor: PropTypes.string,
-    visible: PropTypes.boolean
+    clickCallback: PropTypes.func
   }
   static defaultProps = {
-    bgColor: 'rgba(0, 0, 0, 1)',
-    visible: false
+    bgColor: 'rgba(0, 0, 0, 1)'
+  }
+  onClick() {
+    this.props.clickCallback && this.props.clickCallback();
   }
   render() {
-    let divStyle = {
-      backgroundColor: this.props.bgColor,
-      display: this.props.visible ? 'block' : 'none'
-    }
-    return <div className="screen" style={divStyle} >{this.props.children}</div>;
+    return <div className="screen" style={{backgroundColor: this.props.bgColor}} onClick={this.onClick.bind(this)} >{this.props.children}</div>;
   }
 }
-
-export default Screen;

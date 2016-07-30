@@ -30,6 +30,10 @@ module.exports = {
       '/api/*': {
         target: 'http://localhost:3000/',
         secure: false
+      },
+      '/assert/*': {
+        target: 'http://localhost:3000',
+        secure: false
       }
     }
   },

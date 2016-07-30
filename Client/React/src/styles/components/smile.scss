@@ -1,5 +1,5 @@
 .smile{
-  .mostbeautiful{
+  .pretty{
     display: flex;
     div {
       width: 20%;
@@ -8,9 +8,14 @@
     img{
       height: 100%;
     }
-    .beautiful-img{
+    .pretty-img{
       width: 60%;
-      text-align: center;
+      img{
+        height: auto;
+        margin-top: 50%;
+        margin-left: 50%;
+        transform: translate(-50%,-50%);
+      }
     }
   }
   .memoris{

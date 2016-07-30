@@ -5,23 +5,24 @@ import Smile from '../components/Smile';
 
 import * as smile from '../actions/smile';
 
-class SmileContainer extends Component{
-  render () {
+class SmileContainer extends Component {
+  render() {
     return <Smile {...this.props} />
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   const { smile } = state;
-  const { smileImages,memoirsImages,mostBeautiful } = smile;
+  const { smileImages, memoirsImages, prettyImage, layerImage } = smile;
   return {
     smileImages,
     memoirsImages,
-    mostBeautiful
+    prettyImage,
+    layerImage
   };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(smile, dispatch)
   }

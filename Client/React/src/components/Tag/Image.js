@@ -3,34 +3,17 @@ import React, { PropTypes } from 'react';
 class Image extends React.Component {
   static propTypes = {
     src: PropTypes.string.isRequired,
-    tapCallback: PropTypes.func,
-    longTapCallback: PropTypes.func
+    clickCallback: PropTypes.func
   }
-  state = {
-    touchEnd: true
-  }
-  onTouchStart() {
-    this.setState({ touchEnd: false });
-    let tapTimeoutHandler = setTimeout(() => {
-      // 触摸已经结束 可以触发事件
-      // 判断移动距离 如果移动距离小于某个范围 则判为点击 否则为移动
-      if (this.state.touchEnd) {
-        this.props.tapCallback(this.props.src);
-      }
-      clearTimeout(tapTimeoutHandler);
-    }, 300);
-    let longTapTimeoutHandler = setTimeout(() => {
-      if (!this.state.touchEnd) {
-        this.props.longTapCallback(this.props.src);
-      }
-      clearTimeout(longTapTimeoutHandler);
-    }, 700);
-  }
-  onTouchEnd() {
-    this.setState({ touchEnd: true });
+  onClick() {
+    const { src, width, height } = this.props;
+    this.props.clickCallback && this.props.clickCallback({
+      src, width, height
+    });
   }
   render() {
-    return <img onTouchStart={this.onTouchStart.bind(this)} onTouchEnd={this.onTouchEnd.bind(this)} {...this.props}/>;
+    const {clickCallback, width, height, ...otherProps} = this.props;
+    return <img onClick={this.onClick.bind(this) } {...otherProps}/>;
   }
 }
 
