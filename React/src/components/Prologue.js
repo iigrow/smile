@@ -9,20 +9,22 @@ class Prologue extends React.Component {
     super(props);
     let selectedId = this.props.sences[0].id;
     let sences = new Map();
+    let index = 0;
     this.props.sences.forEach(value => {
-      value.style = {transform: 'translateX(100%)'};
+      value.style = { transform: 'translateX(100%)', backgroundColor: '#55' + index };
+      index += 5;
       sences.set(value.id, value);
     })
     let defaultSence = sences.get(selectedId);
-    defaultSence.style = {transform: 'translateX(0)'};
-    defaultSence.style = {left: 0};
+    defaultSence.style = { transform: 'translateX(0)' };
+    defaultSence.style = { left: 0 };
     sences.set(selectedId, defaultSence);
     this.state = {
       selectedId: selectedId,
       sences: sences
     };
   }
-  moveSence () {
+  moveSence() {
 
   }
   touchStart() {
@@ -65,7 +67,7 @@ class Prologue extends React.Component {
     }
     let sences = this.state.sences;
     let currentSence = sences.get(selectedId);
-    currentSence.style = {transform: 'translateX(0)'};
+    currentSence.style = { transform: 'translateX(0)' };
     sences.set(selectedId, currentSence);
     this.setState({
       sences: sences

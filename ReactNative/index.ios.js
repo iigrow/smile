@@ -11,15 +11,18 @@ import {
   Text,
   View
 } from 'react-native';
+import Main from './components/main';
 
 class smile extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Main></Main>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
+          ok editing
           To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
