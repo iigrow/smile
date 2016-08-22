@@ -1,16 +1,14 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  sences: [
-    {id: 0,img: '/assets/img/pic_006.jpg'},
-    {id: 1,img: '/assets/img/pic_007.jpg'},
-    {id: 2,img: '/assets/img/pic_008.jpg'},
-    {id: 3,img: '/assets/img/pic_009.jpg'}
-  ]
+  sences: []
 };
 
-export default function prologue(state=initialState, action) {
+export default function prologue(state = initialState, action) {
   switch (action.type) {
+    case types.SET_PROLOGUE: return Object.assign({}, state, {
+      sences: action.prologue
+    });
     default: return state;
   }
 }

@@ -1,7 +1,6 @@
 .prologue{
   background-color: #90ec28;
   width: 100%;
-  height: 100%;
   .sences{
     position: relative;
     .sence{
@@ -9,9 +8,9 @@
       transform-style: preserve-3d;
       transition: transform 1s;
       width: 100%;
-      height: 100vh;
+      padding: 0;
+      margin: 0;
       background-color: red;
-      border: none;
       &.left{
         transform: rotateY(-90deg) translateZ(5rem);
       }

@@ -7,3 +7,5 @@ export const SET_MEMOIRS_IMG = 'SET_MEMOIRS_IMG';
 export const SET_PRETTY_IMG = 'SET_PRETTY_IMG';
 
 export const SET_LAYER_IMG = 'SET_LAYER_IMG';
+
+export const SET_PROLOGUE = 'SET_PROLOGUE';

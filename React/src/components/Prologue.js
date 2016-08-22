@@ -8,6 +8,9 @@ import Progress from './Tag/Progress';
 class Prologue extends React.Component {
   constructor(props) {
     super(props);
+    const { actions } = props;
+    const {fetchPrologueInfo} = actions;
+    fetchPrologueInfo();
   }
   state = {
     index: 0
@@ -22,10 +25,10 @@ class Prologue extends React.Component {
     // 左右或者上下移动时直接用 x 或者y 就可以 其他时候可以用angle
   }
   touchStop(angle, totalAngle, totalVector) {
-    // 运动半径大于10则判断为移动 夹角大于90deg即判定为 方向冲突
+    // 运动半径大于10则判断为移动 夹角大于180deg即判定为 方向冲突
     let index = this.state.index;
-    if (Math.sqrt(totalVector.x * totalVector.x + totalVector.y * totalVector.y) > 10 &&
-      Math.abs(totalAngle - angle) < Math.PI / 2) {
+    if (Math.sqrt(totalVector.x * totalVector.x + totalVector.y * totalVector.y) > 5 &&
+      Math.abs(totalAngle - angle) < Math.PI ) {
       // 夹角在 90到270 则认为是向左滑动 整个元素左移
       let isLeft = angle > Math.PI / 2 && angle < 1.5 * Math.PI;
       this.switchSence(isLeft);
@@ -41,10 +44,6 @@ class Prologue extends React.Component {
         this.setState({ index: currentIndex });
       }
     }
-  }
-  _onClick(index) {
-    console.log('test')
-
   }
   render() {
     let btnLogin = {
@@ -70,7 +69,7 @@ class Prologue extends React.Component {
               } else {
                 className = 'left';
               }
-              return <div className={'sence ' + className} key={value.id} onClick={this._onClick.bind(this, index) }><img style={{ height: '100%', width: '100%' }} src={value.img}/></div>;
+              return <div className={'sence ' + className} key={index}><img draggable="false" style={{ height: '100%', width: '100%' }} src={value}/></div>;
             }) }
           </div>
         </Slider>
