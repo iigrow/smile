@@ -2,10 +2,10 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   sences: [
-    {id: 0,img: ''},
-    {id: 1,img: ''},
-    {id: 2,img: ''},
-    {id: 3,img: ''}
+    {id: 0,img: '/assets/img/pic_006.jpg'},
+    {id: 1,img: '/assets/img/pic_007.jpg'},
+    {id: 2,img: '/assets/img/pic_008.jpg'},
+    {id: 3,img: '/assets/img/pic_009.jpg'}
   ]
 };
 

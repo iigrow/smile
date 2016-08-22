@@ -10,15 +10,19 @@ class MenuBar extends React.Component{
       <div className="menu-bar">
         <Button type="link" linkPath="/main/smile">
           <i className="ion-planet"></i>
-          <span>smile</span>
+          <span>爱笑</span>
         </Button>
         <Button type="link" linkPath="/main/mine">
           <i className="ion-social-instagram"></i>
-          <span>mine</span>
+          <span>笑一下</span>
         </Button>
         <Button type="link" linkPath="/main/user">
           <i className="ion-person"></i>
-          <span>user</span>
+          <span>笑友</span>
+        </Button>
+        <Button type="link" linkPath="/main/user">
+          <i className="ion-person"></i>
+          <span>我的</span>
         </Button>
       </div>
     );

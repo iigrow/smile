@@ -13,6 +13,10 @@ console.log('start server ...')
 var env = 'dev'
 var port = env === 'dev' ? 3000 : 80;
 
+
+// app.keys = ['im a newer secret', 'i like turtle'];
+// app.keys = new KeyGrip(['im a newer secret', 'i like turtle'], 'sha256');
+
 app.use(router.routes())
   .on('error', function (err, ctx) {
     console.log(err);

@@ -3,26 +3,14 @@ require('../styles/components/prologue.scss');
 import React from 'react';
 import Button from './Tag/Button';
 import Slider from './Slider';
+import Progress from './Tag/Progress';
 
 class Prologue extends React.Component {
   constructor(props) {
     super(props);
-    let selectedId = this.props.sences[0].id;
-    let sences = new Map();
-    let index = 0;
-    this.props.sences.forEach(value => {
-      value.style = { transform: 'translateX(100%)', backgroundColor: '#55' + index };
-      index += 5;
-      sences.set(value.id, value);
-    })
-    let defaultSence = sences.get(selectedId);
-    defaultSence.style = { transform: 'translateX(0)' };
-    defaultSence.style = { left: 0 };
-    sences.set(selectedId, defaultSence);
-    this.state = {
-      selectedId: selectedId,
-      sences: sences
-    };
+  }
+  state = {
+    index: 0
   }
   moveSence() {
 
@@ -32,46 +20,31 @@ class Prologue extends React.Component {
   }
   touchMoving(angle, totalVector) {
     // 左右或者上下移动时直接用 x 或者y 就可以 其他时候可以用angle
-    let sences = this.state.sences;
-    let currentSence = sences.get(this.state.selectedId);
-    currentSence.style = { transform: `translateX(${totalVector.x}px)` };
-    sences.set(this.state.selectedId, currentSence);
-    this.setState({
-      sences: sences
-    });
   }
   touchStop(angle, totalAngle, totalVector) {
     // 运动半径大于10则判断为移动 夹角大于90deg即判定为 方向冲突
-    let selectedId = this.state.selectedId;
-    if (Math.sqrt(totalVector.x * totalVector.x + totalVector.y * totalVector.y) > 10 ||
-      Math.abs(totalAngle - angle) > Math.PI / 2) {
+    let index = this.state.index;
+    if (Math.sqrt(totalVector.x * totalVector.x + totalVector.y * totalVector.y) > 10 &&
+      Math.abs(totalAngle - angle) < Math.PI / 2) {
       // 夹角在 90到270 则认为是向左滑动 整个元素左移
-      let direction = (angle > Math.PI / 2 && angle < 1.5 * Math.PI) ? -1 : 1;
-      let nextId = selectedId - direction;
-      // 不是边界元素
-      if (nextId >= 0 && nextId < this.props.sences.length) {
-        // 应该使用setState方法去做
-        let sences = this.state.sences;
-        let currentSence = sences.get(selectedId);
-        currentSence.style = { transform: 'translateX(-100%)' };
-        sences.set(this.state.selectedId, currentSence);
-        currentSence = sences.get(nextId);
-        currentSence.style = { transform: 'translateX(0)' };
-        sences.set(nextId, currentSence);
-        this.setState({
-          sences: sences,
-          selectedId: nextId
-        });
-        return;
+      let isLeft = angle > Math.PI / 2 && angle < 1.5 * Math.PI;
+      this.switchSence(isLeft);
+      return;
+    }
+  }
+  switchSence(left) {
+    let currentIndex = this.state.index + (left ? 1 : -1);
+    if (currentIndex >= 0) {
+      if (currentIndex >= this.props.sences.length) {
+        // 最后一张 TODO:跳转进入主页
+      } else {
+        this.setState({ index: currentIndex });
       }
     }
-    let sences = this.state.sences;
-    let currentSence = sences.get(selectedId);
-    currentSence.style = { transform: 'translateX(0)' };
-    sences.set(selectedId, currentSence);
-    this.setState({
-      sences: sences
-    });
+  }
+  _onClick(index) {
+    console.log('test')
+
   }
   render() {
     let btnLogin = {
@@ -88,11 +61,20 @@ class Prologue extends React.Component {
       <div className="prologue">
         <Slider start={this.touchStart.bind(this) } moving={this.touchMoving.bind(this) } stop={this.touchStop.bind(this) }>
           <div className="sences">
-            { this.props.sences.map(value => {
-              return <div className="sence" style={value.style} key={value.id}><img src={value.img}/></div>;
+            { this.props.sences.map((value, index) => {
+              let className = '';
+              if (index > this.state.index) {
+                className = 'right';
+              } else if (index === this.state.index) {
+                className = 'center';
+              } else {
+                className = 'left';
+              }
+              return <div className={'sence ' + className} key={value.id} onClick={this._onClick.bind(this, index) }><img style={{ height: '100%', width: '100%' }} src={value.img}/></div>;
             }) }
           </div>
         </Slider>
+        <Progress count={this.props.sences.length} index={this.state.index} style={{ position: 'absolute', top: '90%' }}/>
         <div className="btn-bottom">
           <Button {...btnLogin}/>
           <Button {...btnRegister}/>

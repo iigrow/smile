@@ -6,8 +6,9 @@
   "scripts": {
     "test": "mocha test/",
     "startproxy": "sudo node proxy.js",
-    "start": "forever start server.js",
-    "stop": "forever stop server.js"
+    "start": "npm run cpstatic & forever start server.js",
+    "stop": "forever stop server.js",
+    "cpstatic": "cp -r ./static ./assets"
   },
   "keywords": [
     "koa",
@@ -16,6 +17,7 @@
   "author": "xjp.star@gmail.com",
   "license": "Apache-2.0",
   "dependencies": {
+    "copyfiles": "^1.0.0",
     "forever": "^0.15.2",
     "http": "0.0.0",
     "koa": "^1.2.1",

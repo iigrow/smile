@@ -1,0 +1,20 @@
+.progress{
+  margin-left: 50%;
+  transform: translateX(-50%);
+  ul{
+    font-size: 10px;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    li{
+      width: 1em;  
+      height: 1em;
+      border-radius: 1em;
+      background-color: #fff;
+      opacity: .6;
+      &.selected{
+        opacity: 1;
+      }
+    }
+  }
+}

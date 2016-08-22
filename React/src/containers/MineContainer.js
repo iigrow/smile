@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
+import Mine from '../components/Mine';
 
-const propTypes = {
-
-};
-
-class MineContainer extends Component{
+export default class MineContainer extends Component{
   render () {
-    return (
-      <div>
-        mine
-        {this.props.children}
-      </div>
-    );
+    return <Mine/>;
   }
 }
-
-MineContainer.propTypes = propTypes;
-
-export default MineContainer;
