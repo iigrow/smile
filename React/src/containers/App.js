@@ -2,7 +2,7 @@ require('../styles/App.css');
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { hashHistory, Router, Route, IndexRoute } from 'react-router';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureStore from '../stores';
@@ -15,7 +15,7 @@ import MineContainer from './MineContainer';
 import UserContainer from './UserContainer';
 
 const store = configureStore();
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(browserHistory, store)
 
 export default class App extends React.Component {
   render() {
