@@ -1,5 +1,6 @@
+import 'babel-polyfill';
+import 'fetch-ie8';
 import React from 'react';
-import "babel-polyfill";
 import { render } from 'react-dom';
 
 import App from './containers/App';
