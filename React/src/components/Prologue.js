@@ -69,7 +69,7 @@ class Prologue extends React.Component {
               } else {
                 className = 'left';
               }
-              return <div className={'sence ' + className} key={index}><img draggable="false" style={{ height: '100%', width: '100%' }} src={value}/></div>;
+              return <div className={'sence ' + className} key={index}><img src={value}/></div>;
             }) }
           </div>
         </Slider>

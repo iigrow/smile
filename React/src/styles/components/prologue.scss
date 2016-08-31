@@ -3,15 +3,16 @@
   width: 100%;
   .sences{
     position: relative;
+    overflow: hidden;
+    height: 100vh;
     .sence{
       position: absolute;
       transform-style: preserve-3d;
-      transition: transform 1s;
+      transition: transform 600ms;
       width: 100%;
       height: 100vh;
       padding: 0;
       margin: 0;
-      background-color: red;
       &.left{
         transform: rotateY(-90deg) translateZ(5rem);
       }
@@ -20,6 +21,10 @@
       }
       &.right{
         transform: rotateY(90deg) translateZ(5rem);
+      }
+      img{
+        height: 100%;
+        width: 100%;
       }
     }
   }

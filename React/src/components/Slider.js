@@ -1,12 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const propTypes = {
-  start: PropTypes.func,
-  moving: PropTypes.func,
-  stop: PropTypes.func,
-};
-
-class Slider extends React.Component {
+export default class Slider extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,6 +14,11 @@ class Slider extends React.Component {
       },
       count: 0
     };
+  }
+  static propTypes = {
+    start: PropTypes.func,
+    moving: PropTypes.func,
+    stop: PropTypes.func,
   }
   getAngle(vector) {
     // 可优化
@@ -106,7 +105,3 @@ class Slider extends React.Component {
     );
   }
 }
-
-Slider.propTypes = propTypes;
-
-export default Slider;
