@@ -1,11 +1,10 @@
 require('../styles/components/prologue.scss');
 
 import React from 'react';
-import Button from './Tag/Button';
 import Slider from './Slider';
 import Progress from './Tag/Progress';
 
-class Prologue extends React.Component {
+export default class Prologue extends React.Component {
   constructor(props) {
     super(props);
     const { actions } = props;
@@ -46,16 +45,6 @@ class Prologue extends React.Component {
     }
   }
   render() {
-    let btnLogin = {
-      type: 'link',
-      text: '登录',
-      linkPath: 'login'
-    };
-    let btnRegister = {
-      type: 'link',
-      text: '注册',
-      linkPath: '/register'
-    };
     return (
       <div className="prologue">
         <Slider start={this.touchStart.bind(this) } moving={this.touchMoving.bind(this) } stop={this.touchStop.bind(this) }>
@@ -74,13 +63,7 @@ class Prologue extends React.Component {
           </div>
         </Slider>
         <Progress count={this.props.sences.length} index={this.state.index} style={{ position: 'absolute', top: '90%' }}/>
-        <div className="btn-bottom">
-          <Button {...btnLogin}/>
-          <Button {...btnRegister}/>
-        </div>
       </div>
     );
   }
 }
-
-export default Prologue;
