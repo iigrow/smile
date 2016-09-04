@@ -1,5 +1,6 @@
-// 
+// login
 export const SET_USERNAME = 'SET_USERNAME';
+export const GET_OAUTH_LIST = 'FETCH_OAUTH_LIST';
 
 //smile
 export const SET_SMILE_IMG = 'SET_SMILE_IMG';

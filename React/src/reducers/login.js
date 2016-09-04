@@ -9,6 +9,9 @@ export default function login (state = initialState, action) {
     case types.SET_USERNAME: return Object.assign({}, state, {
       username: action.userName
     });
+    case types.GET_OAUTH_LIST: return Object.assign({}, state, {
+      oauthList: action.oauthList
+    });
     default: return state;
   }
 }

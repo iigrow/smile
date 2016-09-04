@@ -14,15 +14,6 @@ export default class Prologue extends React.Component {
   state = {
     index: 0
   }
-  moveSence() {
-
-  }
-  touchStart() {
-    // TODO: 缩小选中的图片
-  }
-  touchMoving(angle, totalVector) {
-    // 左右或者上下移动时直接用 x 或者y 就可以 其他时候可以用angle
-  }
   touchStop(angle, totalAngle, totalVector) {
     // 运动半径大于10则判断为移动 夹角大于180deg即判定为 方向冲突
     let index = this.state.index;
@@ -45,9 +36,10 @@ export default class Prologue extends React.Component {
     }
   }
   render() {
+    // 最后一个序幕页应该是登录页面
     return (
       <div className="prologue">
-        <Slider start={this.touchStart.bind(this) } moving={this.touchMoving.bind(this) } stop={this.touchStop.bind(this) }>
+        <Slider stop={this.touchStop.bind(this) }>
           <div className="sences">
             { this.props.sences.map((value, index) => {
               let className = '';

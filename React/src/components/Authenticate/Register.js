@@ -1,22 +1,16 @@
+import '../../styles/components/authenticate/register.scss';
+
 import { Component } from 'react';
 import Button from '../Tag/Button';
 import Input from '../Tag/Input';
 
-const propTypes = {
-
-};
-
-class Register extends Component{
+export default class Register extends Component{
   render () {
     return (
-      <div>
+      <div className="register">
         <Input />
         <Button /> 
       </div>
     );
   }
 }
-
-Register.propTypes = propTypes;
-
-export default Register;

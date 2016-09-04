@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 import Login from '../components/Authenticate/Login';
 
+import * as login from '../actions/login';
+
 class LoginContainer extends Component {
-  render () {
+  render() {
     return (
       <div>
         <Login {...this.props} />
@@ -14,8 +17,15 @@ class LoginContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const {} = state;
-  return {};
+  const { login } = state;
+  const { oauthList } = login;
+  return { oauthList };
 }
 
-export default connect(mapStateToProps)(LoginContainer)
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(login, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
