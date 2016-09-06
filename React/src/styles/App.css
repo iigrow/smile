@@ -1,0 +1,10 @@
+/* Base Application Styles */
+body {
+  background-color: #fff;
+  margin: 0;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}

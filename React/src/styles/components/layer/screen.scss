@@ -1,0 +1,15 @@
+.screen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: none repeat scroll 0 0;
+  z-index: 300;
+  &>:first-child{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}

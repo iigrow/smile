@@ -1,0 +1,31 @@
+.nav-tabs{
+  position: relative;
+  width: 100%;
+  .nav-tabs-title{
+    display: flex;
+    justify-content: space-around;
+    div{
+      text-align: center;
+      width: 100%;
+      font-size: (32rem/75);
+      padding: .1rem;
+    }
+    .selected{
+      background-color: green;
+    }
+  }
+  .nav-tabs-content{
+    width: 100%;
+    position: absolute;
+    transition: transform 800ms;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    &.selected{
+      transform: rotateY(0);
+      background-color: green;
+    }
+    &.no-selected{
+      transform: rotateY(180deg);
+    }
+  }
+}
