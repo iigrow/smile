@@ -25,7 +25,6 @@ export default class App extends React.Component {
           <Route path="/" >
             <IndexRoute component={PrologueContainer} />
             <Route path="login" component={LoginContainer} />
-            <Route path="register" component={LoginContainer} />
             <Route path="main" component={MainContainer} onEnter={()=>{console.log('enter')}}>
               <IndexRoute component={SmileContainer} />
               <Route path="smile" component={SmileContainer} />

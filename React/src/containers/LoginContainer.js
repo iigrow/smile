@@ -18,8 +18,8 @@ class LoginContainer extends Component {
 
 function mapStateToProps(state) {
   const { login } = state;
-  const { oauthList } = login;
-  return { oauthList };
+  const { oauthList, userName, telError, pwdError, captchaError } = login;
+  return { oauthList, userName, telError, pwdError, captchaError };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -1,9 +1,22 @@
+/*
+ * @Author: star 
+ * @Date: 2016-09-05 15:25:37 
+ * @Last Modified by: star
+ * @Last Modified time: 2016-09-06 23:24:48
+ */
+
 import '../../styles/components/authenticate/login.scss';
 
 import React, {PropTypes} from 'react';
 import Button from '../Tag/Button';
-import Captcha from '../Security/Captcha';
+import SMSCaptcha from '../Captcha/SMSCaptcha';
 
+/**
+ * login component
+ * @export
+ * @class Login
+ * @extends {React.Component}
+ */
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -19,17 +32,9 @@ export default class Login extends React.Component {
   }
   state = {
     login: false,
-    telError: 'sdf',
-    captchaError: 'sdf',
-    pwdError: 'sfd'
   }
   retrievePwd() {
-    const { retrievePwd } = this.props.actions;
     retrievePwd();
-  }
-  getCaptcha() {
-    const { getCaptcha } = this.props.actions;
-    getCaptcha();
   }
   swithEntry() {
     this.setState({ login: !this.state.login });
@@ -38,19 +43,18 @@ export default class Login extends React.Component {
     this.clearPwdError();
   }
   clearTelError() {
-    this.setState({ telError: null });
+    this.props.actions.setTelError(null);
   }
   clearPwdError() {
-    this.setState({ pwdError: null });
+    this.props.actions.setPwdError(null);
   }
   clearCaptchaError() {
-    this.setState({ captchaError: null });
+    this.props.actions.setCaptchaError(null);
   }
   submit() {
     // 帐号是否已注册 
     // 发送验证码 60s重发机制 次数限制
     // 登录账号密码错误
-
   }
   render() {
     return (
@@ -62,22 +66,22 @@ export default class Login extends React.Component {
           <p>让生命焕发灿烂之光</p>
         </div>
         <div className="form">
-          <div className={this.state.telError ? 'error' : ''}>
+          <div className={this.props.telError ? 'error' : ''}>
             <input type="number" placeholder="手机号" onFocus={this.clearTelError.bind(this) }/>
           </div>
-          <p>{this.state.telError}&nbsp; </p>
+          <p>{this.props.telError}&nbsp; </p>
           { this.state.login ?
-            <div className={this.state.pwdError ? 'error' : ''}>
+            <div className={this.props.pwdError ? 'error' : ''}>
               <input className="left" type="password" placeholder="密码" onFocus={this.clearPwdError.bind(this) }/>
               <span onClick={this.retrievePwd.bind(this) }>找回密码&nbsp; &nbsp; </span>
             </div>
             :
-            <div className={this.state.captchaError ? 'error' : ''}>
+            <div className={this.props.captchaError ? 'error' : ''}>
               <input className="left" type="number" placeholder="验证码" onFocus={this.clearCaptchaError.bind(this) }/>
-              <Captcha/>
+              <SMSCaptcha tel="13161924715"/>
             </div>
           }
-          <p>{this.state.login ? this.state.pwdError : this.state.captchaError}&nbsp; </p>
+          <p>{this.state.login ? this.props.pwdError : this.props.captchaError}&nbsp; </p>
           <div>
             <input type="button" value="笑一下" onClick={this.submit.bind(this) }/>
           </div>
