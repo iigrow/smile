@@ -2,24 +2,24 @@
  * @Author: star 
  * @Date: 2016-09-05 15:25:37 
  * @Last Modified by: star
- * @Last Modified time: 2016-09-06 23:24:48
+ * @Last Modified time: 2016-09-11 00:36:48
  */
 
-import '../../styles/components/authenticate/login.scss';
+import '../../styles/components/authenticate/account.scss';
 
 import React, {PropTypes} from 'react';
-import Button from '../Tag/Button';
 import SMSCaptcha from '../Captcha/SMSCaptcha';
 
 /**
- * login component
+ * Account component
  * @export
- * @class Login
+ * @class Account
  * @extends {React.Component}
  */
-export default class Login extends React.Component {
+export default class Account extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
     const {actions} = props;
     const { getOauthList } = actions;
     getOauthList();
@@ -51,9 +51,17 @@ export default class Login extends React.Component {
   clearCaptchaError() {
     this.props.actions.setCaptchaError(null);
   }
+  onTelChange(evt) {
+    this.setState({ tel: evt.value })
+  }
+  onPwdChange(evt) {
+    this.setState({ pwd: evt.value })
+  }
+  onCpatchaChange(evt) {
+    this.setState({ captcha: evt.value })
+  }
   submit() {
     // 帐号是否已注册 
-    // 发送验证码 60s重发机制 次数限制
     // 登录账号密码错误
   }
   render() {
@@ -67,18 +75,18 @@ export default class Login extends React.Component {
         </div>
         <div className="form">
           <div className={this.props.telError ? 'error' : ''}>
-            <input type="number" placeholder="手机号" onFocus={this.clearTelError.bind(this) }/>
+            <input type="number" placeholder="手机号" onFocus={this.clearTelError.bind(this) } onChange={this.onTelChange.bind(this) }/>
           </div>
           <p>{this.props.telError}&nbsp; </p>
           { this.state.login ?
             <div className={this.props.pwdError ? 'error' : ''}>
-              <input className="left" type="password" placeholder="密码" onFocus={this.clearPwdError.bind(this) }/>
+              <input className="left" type="password" placeholder="密码" onFocus={this.clearPwdError.bind(this) } onChange={this.onPwdChange.bind(this) }/>
               <span onClick={this.retrievePwd.bind(this) }>找回密码&nbsp; &nbsp; </span>
             </div>
             :
             <div className={this.props.captchaError ? 'error' : ''}>
-              <input className="left" type="number" placeholder="验证码" onFocus={this.clearCaptchaError.bind(this) }/>
-              <SMSCaptcha tel="13161924715"/>
+              <input className="left" type="number" placeholder="验证码" onFocus={this.clearCaptchaError.bind(this) } onChange={this.onCpatchaChange.bind(this) }/>
+              <SMSCaptcha tel={this.state.tel}/>
             </div>
           }
           <p>{this.state.login ? this.props.pwdError : this.props.captchaError}&nbsp; </p>

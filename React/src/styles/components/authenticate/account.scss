@@ -1,3 +1,5 @@
+@import './form.scss';
+
 .login{
   color: white;
   height: 100vh;
@@ -7,40 +9,6 @@
     padding: 2rem 1rem 1rem 1rem;
     text-align: center;
     font-size: (38rem/75);
-  }
-  .form{
-    padding: 0 1rem;
-    div{
-      border-radius: .5rem;
-      border: 1px solid gray;
-      padding: 0 .3rem;
-      font-size: (32rem/75);
-      input{
-        padding: .15rem 0;
-        background: inherit;
-        border: none;
-        color: inherit;
-        font-size: (32rem/75);
-        width: 100%;
-        &.left{
-          width: 65%;
-        }
-      }
-      span{
-        display: inline-block;
-        border-left: 1px solid gray;
-        padding: .15rem 0 .15rem .15rem;
-        font-size: (28rem/75);
-      }
-      &.error{
-        border-color: red;
-      }
-    }
-    p{
-      font-size: .3rem;
-      margin: .2rem;
-      color: red;
-    }
   }
   .entry{
     margin-top: 1rem;
