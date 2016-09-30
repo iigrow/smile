@@ -2,7 +2,7 @@
  * @Author: star 
  * @Date: 2016-09-05 15:25:37 
  * @Last Modified by: star
- * @Last Modified time: 2016-09-11 00:36:48
+ * @Last Modified time: 2016-09-19 23:59:01
  */
 
 import '../../styles/components/authenticate/account.scss';
@@ -52,13 +52,13 @@ export default class Account extends React.Component {
     this.props.actions.setCaptchaError(null);
   }
   onTelChange(evt) {
-    this.setState({ tel: evt.value })
+    this.setState({ tel: evt.target.value})
   }
   onPwdChange(evt) {
-    this.setState({ pwd: evt.value })
+    this.setState({ pwd: evt.target.value})
   }
   onCpatchaChange(evt) {
-    this.setState({ captcha: evt.value })
+    this.setState({ captcha: evt.target.value})
   }
   submit() {
     // 帐号是否已注册 
@@ -75,17 +75,17 @@ export default class Account extends React.Component {
         </div>
         <div className="form">
           <div className={this.props.telError ? 'error' : ''}>
-            <input type="number" placeholder="手机号" onFocus={this.clearTelError.bind(this) } onChange={this.onTelChange.bind(this) }/>
+            <input type="number" placeholder="手机号" onFocus={this.clearTelError.bind(this) } onBlur={this.onTelChange.bind(this) }/>
           </div>
           <p>{this.props.telError}&nbsp; </p>
           { this.state.login ?
             <div className={this.props.pwdError ? 'error' : ''}>
-              <input className="left" type="password" placeholder="密码" onFocus={this.clearPwdError.bind(this) } onChange={this.onPwdChange.bind(this) }/>
+              <input className="left" type="password" placeholder="密码" onFocus={this.clearPwdError.bind(this) } onBlur={this.onPwdChange.bind(this) }/>
               <span onClick={this.retrievePwd.bind(this) }>找回密码&nbsp; &nbsp; </span>
             </div>
             :
             <div className={this.props.captchaError ? 'error' : ''}>
-              <input className="left" type="number" placeholder="验证码" onFocus={this.clearCaptchaError.bind(this) } onChange={this.onCpatchaChange.bind(this) }/>
+              <input className="left" type="number" placeholder="验证码" onFocus={this.clearCaptchaError.bind(this) } onBlur={this.onCpatchaChange.bind(this) }/>
               <SMSCaptcha tel={this.state.tel}/>
             </div>
           }

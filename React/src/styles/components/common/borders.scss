@@ -1,0 +1,9 @@
+.double-shadow {
+  /*inset关键字使得投影是绘制在元素的内圈(向内嵌)，以便可以接受到点击等事件*/
+  box-shadow: 0 0 0 .5em #f00, 0 0 0 1em #f0f inset;
+}
+
+.hem {
+  outline: dashed currentColor 3px;
+  outline-offset: -0.1em;
+}
