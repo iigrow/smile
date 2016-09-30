@@ -3,6 +3,11 @@
   &:before{
     content: "";
     position: absolute;
-    
+    top: -.4em;
+    left: 1em;
+    padding: .35em;
+    background: inherit;
+    border: inherit;
+    transform: rotate(45deg);
   }
 }

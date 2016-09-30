@@ -2,7 +2,7 @@
  * @Author: star 
  * @Date: 2016-09-05 16:39:47 
  * @Last Modified by: star
- * @Last Modified time: 2016-09-06 23:24:21
+ * @Last Modified time: 2016-09-10 20:03:58
  */
 
 import React, {PropTypes} from 'react';
@@ -21,12 +21,17 @@ import { SET_TELERROR } from '../../constants/ActionTypes';
 class SMSCaptcha extends React.Component {
   constructor(props) {
     super(props);
+    if (props.auto) {
+      this.getCaptcha();
+    }
   }
   static propTypes = {
-    tel: PropTypes.string
+    tel: PropTypes.string,
+    auto: PropTypes.bool
   }
   static defaultProps = {
-    tel: null
+    tel: null,
+    auto: false
   }
   state = {
     interval: 50

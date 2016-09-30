@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Login from '../components/Authenticate/Login';
 
 import * as login from '../actions/login';
 
@@ -9,8 +8,9 @@ class LoginContainer extends Component {
   render() {
     return (
       <div>
-        <Login {...this.props} />
-        {this.props.children}
+        { React.Children.map(this.props.children, child => {
+          return React.cloneElement(child, this.props)
+        })}
       </div>
     );
   }
