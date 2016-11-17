@@ -2,10 +2,11 @@
  * @Author: star 
  * @Date: 2016-10-26 09:29:54 
  * @Last Modified by: star
- * @Last Modified time: 2016-10-26 09:49:29
+ * @Last Modified time: 2016-11-17 17:25:09
  */
 
 var https = require('https');
+var fs = require('fs');
 var ssl = require('koa-ssl');
 var app = require('koa')();
 var Router = require('./router');
@@ -13,7 +14,7 @@ var authenticate = require('./filter/authenticate');
 
 var router = Router({
   api: 'api',
-  resources: ['assets', 'static'],
+  resources: ['assets', 'static', '.well-known'],
   filter: [authenticate]
 });
 // var formidable = require('formidable'); // 流式解析，能随着数据块的上传接受它们，解析它们，并吐出特定的部分，就像我们之前提到的部分请求头和请求主体
@@ -29,9 +30,9 @@ app.use(router.routes())
 console.log('start server ...')
 
 https.createServer({
-  ca: fs.readFileSync('/root/.ssl/ca.crt'),
-  key: fs.readFileSync('/root/.ssl/smilplex.key'),
-  cert: fs.readFileSync('/root/.ssl/smilplex.crt'),
+  ca: fs.readFileSync('./.ssl/ca.crt'),
+  key: fs.readFileSync('./.ssl/smilplex.key'),
+  cert: fs.readFileSync('./.ssl/smilplex.crt'),
   passphrase: '1234'
 }, app.callback()).listen(Process.env.PORT);
 

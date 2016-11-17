@@ -1,3 +1,10 @@
+/*
+ * @Author: star 
+ * @Date: 2016-10-10 20:21:12 
+ * @Last Modified by:   star 
+ * @Last Modified time: 2016-10-10 20:21:12 
+ */
+
 import React, { PropTypes } from 'react';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';

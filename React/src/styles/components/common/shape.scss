@@ -1,3 +1,37 @@
-.rounded{
+.rounded {}
 
+.rainbow {
+  /* 从上一个color-stop的stop位置开始渐变过渡到下一个color-stop的stop位置 然后用下一个的color填充剩余空间
+  如果第一个颜色中间点没有定义长度或百分比，它将包含缺省值0。
+  如果最后一个颜色中间点没有定义长度或百分比，它将包含缺省值100%。
+  如果中间的颜色中间点没定义长度或百分比，那么它将被设定为前后两站的平均值。
+   */
+  background-image: linear-gradient(#FF0000 15%, #FF7F00 30%, #FFFF00 45%, #00FF00 60%, #00FFFF 75%, #0000FF 90%, #8B00FF 10%);
+}
+
+.chessboard {
+  /* 用直角三角形拼出正方形 */
+  background-image: linear-gradient(45deg, #bbb 25%, transparent 0), linear-gradient(45deg, transparent 75%, #bbb 25%), linear-gradient(45deg, #bbb 25%, transparent 0), linear-gradient(45deg, transparent 75%, #bbb 25%);
+  background-position: 0 0, 15px 15px, 15px 15px, 30px 30px;
+  background-size: 30px 30px;
+}
+
+.speckle {
+  background-image: radial-gradient(tan 30%, transparent 0), radial-gradient(tan 30%, transparent 0);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.random-stripe {
+  background: hsl(20, 40%, 90%);
+  background-image: linear-gradient(to right, #fb3 10px, transparent 0%), linear-gradient(to right, #ab4 20px, transparent 0%), linear-gradient(to right, #655 40px, transparent 0%);
+  /* 通过不同宽度单纹理图的重复，并多层覆盖来生成伪随机条纹图，则需要让纹理重合的可能性尽可能小，则需要让纹理图宽度的最小公倍数尽可能大，因此宽度为质数时则会更容易达到这种效果 */
+  background-size: 41px 100%, 61px 100%, 83px 100%;
+}
+
+.border-dashed {
+  /* 通过padding-box白色背景图 覆盖border-box斜纹背景图 形成条纹边框 */
+  padding: 1em;
+  border: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box, repeating-linear-gradient(-45deg, black 0, black 25%, white 0, white 50%) 0 / .6em .6em;
 }

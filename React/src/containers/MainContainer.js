@@ -1,3 +1,10 @@
+/*
+ * @Author: star 
+ * @Date: 2016-10-10 20:20:49 
+ * @Last Modified by:   star 
+ * @Last Modified time: 2016-10-10 20:20:49 
+ */
+
 import React from 'react';
 import NavigationBar from '../components/NavigationBar';
 import MenuBar from '../components/Menu/MenuBar';

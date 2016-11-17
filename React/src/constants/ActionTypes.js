@@ -1,3 +1,13 @@
+/*
+ * @Author: star 
+ * @Date: 2016-10-10 18:02:12 
+ * @Last Modified by: star
+ * @Last Modified time: 2016-10-10 19:34:12
+ */
+
+// global
+export const ADD_SLIDEEVENT_LISTENER = 'ADD_SLIDEEVENT_LISTENER';
+
 // login
 export const SET_USERNAME = 'SET_USERNAME';
 export const GET_OAUTH_LIST = 'FETCH_OAUTH_LIST';
