@@ -6,9 +6,9 @@
   "scripts": {
     "test": "mocha test/",
     "startproxy": "sudo node proxy.js",
-    "start": "PORT=443 && npm run cpstatic & forever start server.js",
-    "dev": "PORT=3000 && npm run cpstatic & forever start server.js",
+    "start": "npm run cpstatic && forever start server.js --env=production",
     "stop": "forever stop server.js",
+    "dev": "node server.js --env=dev",
     "cpstatic": "cp -r ./static ./assets"
   },
   "keywords": [
@@ -26,6 +26,7 @@
     "koa-send": "^3.2.0",
     "koa-ssl": "^2.0.0",
     "md5": "^2.1.0",
+    "minimist": "^1.2.0",
     "mongodb": "^2.2.5"
   },
   "devDependencies": {

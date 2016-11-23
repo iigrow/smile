@@ -2,38 +2,41 @@
  * @Author: star 
  * @Date: 2016-10-26 09:29:54 
  * @Last Modified by: star
- * @Last Modified time: 2016-11-17 17:25:09
+ * @Last Modified time: 2016-11-17 18:54:07
  */
 
-var https = require('https');
-var fs = require('fs');
-var ssl = require('koa-ssl');
-var app = require('koa')();
-var Router = require('./router');
-var authenticate = require('./filter/authenticate');
+const https = require('https');
+const fs = require('fs');
+const app = require('koa')();
+const args = require('minimist')(process.argv.slice(2));
 
-var router = Router({
+const Router = require('./router');
+const authenticate = require('./filter/authenticate');
+
+// project enviroment to build
+process.env.NODE_ENV = args.env || 'dev';
+
+console.log('Scan api files to create router table ...')
+
+// create router table
+const router = Router({
   api: 'api',
   resources: ['assets', 'static', '.well-known'],
   filter: [authenticate]
 });
-// var formidable = require('formidable'); // 流式解析，能随着数据块的上传接受它们，解析它们，并吐出特定的部分，就像我们之前提到的部分请求头和请求主体
-
-// app.keys = ['im a newer secret', 'i like turtle'];
-// app.keys = new KeyGrip(['im a newer secret', 'i like turtle'], 'sha256');
 
 app.use(router.routes())
   .on('error', function (err, ctx) {
     console.log(err);
-  })
+  });
 
-console.log('start server ...')
+console.log('Starting server ...')
 
 https.createServer({
   ca: fs.readFileSync('./.ssl/ca.crt'),
   key: fs.readFileSync('./.ssl/smilplex.key'),
   cert: fs.readFileSync('./.ssl/smilplex.crt'),
   passphrase: '1234'
-}, app.callback()).listen(Process.env.PORT);
+}, app.callback()).listen(443);
 
-console.log('waiting request ...')
+console.log('Waiting request ...')
